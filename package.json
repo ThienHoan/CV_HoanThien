@@ -14,13 +14,18 @@
   "license": "ISC",
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.1",
     "bootstrap": "^5.3.7",
+    "dotenv": "^17.2.1",
+    "drizzle-orm": "^0.44.4",
     "ejs": "^3.1.9",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/node": "^20.5.0",
+    "@types/pg": "^8.15.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.9.2"
   }

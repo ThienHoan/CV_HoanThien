@@ -1,34 +1,15 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
-import fs from 'fs';
-import { geteuid } from 'process';
+import pool from './db/db';
+import * as dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 const app = express();
 app.enable('trust proxy');
 
-const PORT = process.env.PORT || 3001; // Đổi port để tránh conflict
-
-// Database file path
-const DB_FILE = './contacts.json';
-
-// Initialize database file
-if (!fs.existsSync(DB_FILE)) {
-  fs.writeFileSync(DB_FILE, JSON.stringify([]));
-}
-
-// Helper functions for database operations
-const readContacts = (): any[] => {
-  try {
-    const data = fs.readFileSync(DB_FILE, 'utf8');geteuid
-    return JSON.parse(data);
-  } catch {
-    return [];
-  }
-};
-
-const writeContacts = (contacts: any[]): void => {
-  fs.writeFileSync(DB_FILE, JSON.stringify(contacts, null, 2));
-};
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(express.json());
@@ -49,7 +30,7 @@ app.get('/contact', (req: Request, res: Response) => {
 });
 
 // API Routes
-app.post('/api/contact', (req: Request, res: Response) => {
+app.post('/api/contact', async (req: Request, res: Response) => {
   const { email, content } = req.body;
   
   if (!email || !content) {
@@ -59,17 +40,18 @@ app.post('/api/contact', (req: Request, res: Response) => {
     });
   }
 
+  const client = await pool.connect();
+  
   try {
-    const contacts = readContacts();
-    const newContact = {
-      id: contacts.length + 1,
-      email,
-      content,
-      created_at: new Date().toISOString()
-    };
+    // Insert new contact into database
+    const insertQuery = `
+      INSERT INTO contacts (email, content, created_at) 
+      VALUES ($1, $2, NOW()) 
+      RETURNING id, email, content, created_at
+    `;
     
-    contacts.push(newContact);
-    writeContacts(contacts);
+    const result = await client.query(insertQuery, [email, content]);
+    const newContact = result.rows[0];
     
     res.json({ 
       success: true, 
@@ -80,8 +62,31 @@ app.post('/api/contact', (req: Request, res: Response) => {
     console.error('Error saving contact:', error);
     res.status(500).json({ 
       success: false, 
-      message: 'Lỗi khi lưu dữ liệu' 
+      message: 'Lỗi khi lưu dữ liệu vào database' 
     });
+  } finally {
+    client.release();
+  }
+});
+
+// Get all contacts (optional - for admin)
+app.get('/api/contacts', async (req: Request, res: Response) => {
+  const client = await pool.connect();
+  
+  try {
+    const result = await client.query('SELECT * FROM contacts ORDER BY created_at DESC');
+    res.json({ 
+      success: true, 
+      contacts: result.rows 
+    });
+  } catch (error) {
+    console.error('Error fetching contacts:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Lỗi khi lấy dữ liệu từ database' 
+    });
+  } finally {
+    client.release();
   }
 });
 
@@ -98,5 +103,6 @@ app.listen(PORT, () => {
 // Graceful shutdown
 process.on('SIGINT', () => {
   console.log('Đang tắt server...');
+  pool.end();
   process.exit(0);
 });
