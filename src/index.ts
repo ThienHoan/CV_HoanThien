@@ -1,8 +1,11 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
 import fs from 'fs';
+import { geteuid } from 'process';
 
 const app = express();
+app.enable('trust proxy');
+
 const PORT = process.env.PORT || 3001; // Đổi port để tránh conflict
 
 // Database file path
@@ -16,7 +19,7 @@ if (!fs.existsSync(DB_FILE)) {
 // Helper functions for database operations
 const readContacts = (): any[] => {
   try {
-    const data = fs.readFileSync(DB_FILE, 'utf8');
+    const data = fs.readFileSync(DB_FILE, 'utf8');geteuid
     return JSON.parse(data);
   } catch {
     return [];
