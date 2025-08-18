@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - Encrypted Communication Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="d-flex flex-column">
+    <!-- Matrix Background -->
+    <canvas class="matrix-bg" id="matrix"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand glow-text" href="/">&lt;/&gt; ThienHoan.dev</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#about">// About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#skills">// Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#projects">// Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/contact">// Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow-1 py-5" style="margin-top: 80px;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Terminal Header -->
+                    <div class="terminal-window mb-4">
+                        <div class="text-start mb-3">
+                            <span style="color: #ff6b6b;">thien@mysterious:~$</span> 
+                            <span class="typing-effect" id="typing-text">./initialize_contact.sh</span>
+                        </div>
+                        <p style="color: #00ccff;">
+                            > Establishing secure connection...<br>
+                            > Encryption protocols activated<br>
+                            > Ready to receive transmission
+                        </p>
+                    </div>
+
+                    <div class="card cyber-border encryption-animation">
+                        <div class="card-header text-center" style="background: rgba(0, 0, 0, 0.9); border-bottom: 1px solid #00ff41;">
+                            <h1 class="glow-text mb-0">
+                                <i class="fas fa-satellite-dish"></i> ENCRYPTED COMMUNICATION PORTAL
+                            </h1>
+                        </div>
+                        <div class="card-body" style="background: rgba(0, 0, 0, 0.8);">
+                            <div class="text-center mb-4">
+                                <p style="color: #00ccff;">
+                                    <i class="fas fa-shield-alt"></i> Secure Message Transmission
+                                </p>
+                                <p class="text-muted" style="color: rgba(0, 255, 65, 0.7) !important;">
+                                    Gửi tin nhắn được mã hóa qua kênh bảo mật. Chúng tôi sẽ giải mã và phản hồi trong thời gian sớm nhất.
+                                </p>
+                            </div>
+                            
+                            <!-- Message Alert -->
+                            <div id="message" class="alert d-none" role="alert"></div>
+                            
+                            <!-- Contact Form -->
+                            <form id="contactForm">
+                                <div class="mb-4">
+                                    <label for="email" class="form-label">
+                                        <i class="fas fa-at"></i> Email Address <span style="color: #ff4444;">*</span>
+                                    </label>
+                                    <input type="email" class="form-control" id="email" name="email" required 
+                                           placeholder="Enter your encrypted email address...">
+                                    <div class="invalid-feedback" style="color: #ff4444;">
+                                        Invalid email format detected
+                                    </div>
+                                    <div class="form-text">
+                                        <i class="fas fa-info-circle"></i> Your email will be encrypted during transmission
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="content" class="form-label">
+                                        <i class="fas fa-file-code"></i> Message Content <span style="color: #ff4444;">*</span>
+                                    </label>
+                                    <textarea class="form-control" id="content" name="content" rows="6" required 
+                                              placeholder="// Begin encrypted message
+Enter your message here...
+// End encrypted message"></textarea>
+                                    <div class="invalid-feedback" style="color: #ff4444;">
+                                        Message content is required
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="form-text">
+                                            <i class="fas fa-lock"></i> Message will be encrypted with AES-256
+                                        </div>
+                                        <div class="char-counter" id="charCounter">0/500 characters</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-cyber">
+                                        <i class="fas fa-paper-plane"></i> TRANSMIT MESSAGE
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Additional Info -->
+                    <div class="terminal-window mt-4">
+                        <h5 style="color: #00ccff;">
+                            <i class="fas fa-info-circle"></i> Connection Information
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Response Time:</strong> < 24 hours</p>
+                                <p><strong>Encryption:</strong> End-to-end</p>
+                                <p><strong>Status:</strong> <span style="color: #00ff41;">ONLINE</span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Protocol:</strong> HTTPS/TLS 1.3</p>
+                                <p><strong>Server:</strong> Quantum Secured</p>
+                                <p><strong>Location:</strong> Digital Realm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 mt-auto" style="background: rgba(0, 0, 0, 0.9); border-top: 2px solid #00ff41;">
+        <div class="container">
+            <div class="terminal-window">
+                <p class="mb-2">
+                    <span style="color: #ff6b6b;">thien@mysterious:~$</span> 
+                    echo "Connection established successfully"
+                </p>
+                <p style="color: #00ccff;" class="mb-0">
+                    > Message transmission ready<br>
+                    > Awaiting your encrypted communication...
+                </p>
+            </div>
+            <div class="d-flex justify-content-center gap-4 mb-3">
+                <a href="#" class="text-decoration-none" style="color: #00ff41;">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+                <a href="#" class="text-decoration-none" style="color: #00ff41;">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+                <a href="#" class="text-decoration-none" style="color: #00ff41;">
+                    <i class="fab fa-twitter fa-2x"></i>
+                </a>
+                <a href="mailto:contact@thienhoan.dev" class="text-decoration-none" style="color: #00ff41;">
+                    <i class="fas fa-envelope fa-2x"></i>
+                </a>
+            </div>
+            <p class="mb-0 glow-text">&copy; 2025 ThienHoan.dev | Secure Communications Portal</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+    
+    <script>
+        // Matrix Rain Effect (same as index page)
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const matrixArray = matrix.split("");
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+        
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        
+        setInterval(draw, 35);
+        
+        // Typing Effect
+        const texts = ['./initialize_contact.sh', 'ping secure_server', 'netstat -encryption', 'whoami', 'echo "Ready to receive"'];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typingElement = document.getElementById('typing-text');
+        
+        function typeText() {
+            if (charIndex < texts[textIndex].length) {
+                typingElement.textContent = texts[textIndex].substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeText, 100);
+            } else {
+                setTimeout(() => {
+                    charIndex = 0;
+                    textIndex = (textIndex + 1) % texts.length;
+                    typeText();
+                }, 2000);
+            }
+        }
+        
+        typeText();
+        
+        // Character counter
+        const contentTextarea = document.getElementById('content');
+        const charCounter = document.getElementById('charCounter');
+        const maxChars = 500;
+        
+        contentTextarea.addEventListener('input', function() {
+            const charCount = this.value.length;
+            charCounter.textContent = `${charCount}/${maxChars} characters`;
+            
+            if (charCount > maxChars) {
+                this.value = this.value.substring(0, maxChars);
+                charCounter.textContent = `${maxChars}/${maxChars} characters`;
+                charCounter.style.color = '#ff4444';
+            } else if (charCount > maxChars * 0.8) {
+                charCounter.style.color = '#ffaa00';
+            } else {
+                charCounter.style.color = '#00ccff';
+            }
+        });
+        
+        // Form encryption animation
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-lock"></i> ENCRYPTING...';
+            submitBtn.disabled = true;
+            
+            // Re-enable button after form processing
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> TRANSMIT MESSAGE';
+                submitBtn.disabled = false;
+            }, 3000);
+        });
+        
+        // Add glitch effect on form focus
+        const inputs = document.querySelectorAll('.form-control');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.boxShadow = '0 0 20px rgba(0, 255, 65, 0.5)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

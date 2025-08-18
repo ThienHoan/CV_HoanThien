@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - Mysterious Developer CV</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Matrix Background -->
+    <canvas class="matrix-bg" id="matrix"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand glow-text" href="/">&lt;/&gt; ThienHoan.dev</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">// About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">// Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">// Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">// Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="container-fluid text-center py-5" style="margin-top: 80px;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="terminal-window">
+                        <div class="text-start mb-3">
+                            <span style="color: #ff6b6b;">thien@mysterious:~$</span> 
+                            <span class="typing-effect" id="typing-text">whoami</span>
+                        </div>
+                        <h1 class="display-4 glow-text mb-4">THIỆN HOÀN</h1>
+                        <p class="lead mb-4" style="color: #00ccff;">
+                            > Mysterious Full-Stack Developer<br>
+                            > Code Architect & Digital Wizard<br>
+                            > Turning Coffee into Code since 2020
+                        </p>
+                        <div class="d-flex justify-content-center gap-3 mb-4">
+                            <a href="#projects" class="btn btn-cyber">
+                                <i class="fas fa-code"></i> View Projects
+                            </a>
+                            <a href="/contact" class="btn btn-cyber">
+                                <i class="fas fa-terminal"></i> Initialize Contact
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container py-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="text-center glow-text mb-5">
+                    <i class="fas fa-user-secret"></i> // About Me
+                </h2>
+                <div class="cyber-border p-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 style="color: #00ccff;">Profile.exe</h4>
+                            <p>
+                                Tôi là một lập trình viên bí ẩn, luôn tìm kiếm những thách thức mới trong thế giới công nghệ. 
+                                Với niềm đam mê mãnh liệt về code và khả năng giải quyết vấn đề, tôi tạo ra những ứng dụng 
+                                độc đáo và hiệu quả.
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 style="color: #00ccff;">System Info</h4>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-map-marker-alt"></i> Location: Vietnam</li>
+                                <li><i class="fas fa-graduation-cap"></i> Education: Computer Science</li>
+                                <li><i class="fas fa-coffee"></i> Fuel: Coffee & Energy Drinks</li>
+                                <li><i class="fas fa-moon"></i> Status: Night Owl Coder</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="container py-5">
+        <h2 class="text-center glow-text mb-5">
+            <i class="fas fa-code"></i> // Technical Arsenal
+        </h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #00ccff;">
+                            <i class="fab fa-js-square"></i> Frontend Technologies
+                        </h5>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span>JavaScript/TypeScript</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span>React/Next.js</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span>Vue.js</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #00ccff;">
+                            <i class="fas fa-server"></i> Backend Technologies
+                        </h5>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span>Node.js/Express</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 88%;"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span>Python/Django</span>
+                                <span>82%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 82%;"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span>Database (SQL/NoSQL)</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container py-5">
+        <h2 class="text-center glow-text mb-5">
+            <i class="fas fa-folder-open"></i> // Featured Projects
+        </h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="project-card card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #00ff41;">
+                            <i class="fas fa-globe"></i> Mysterious Web Portal
+                        </h5>
+                        <p class="card-text">
+                            Một web application bí ẩn được xây dựng với React và Node.js, 
+                            tích hợp AI và các thuật toán mã hóa tiên tiến.
+                        </p>
+                        <div class="d-flex gap-2">
+                            <span class="badge bg-success">React</span>
+                            <span class="badge bg-info">Node.js</span>
+                            <span class="badge bg-warning">AI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="project-card card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #00ff41;">
+                            <i class="fas fa-robot"></i> Quantum Bot
+                        </h5>
+                        <p class="card-text">
+                            Bot tự động thông minh sử dụng machine learning để phân tích 
+                            và xử lý dữ liệu phức tạp trong thời gian thực.
+                        </p>
+                        <div class="d-flex gap-2">
+                            <span class="badge bg-success">Python</span>
+                            <span class="badge bg-info">ML</span>
+                            <span class="badge bg-warning">API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="project-card card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #00ff41;">
+                            <i class="fas fa-shield-alt"></i> CyberGuard System
+                        </h5>
+                        <p class="card-text">
+                            Hệ thống bảo mật tiên tiến với khả năng phát hiện và ngăn chặn 
+                            các mối đe dọa mạng một cách tự động.
+                        </p>
+                        <div class="d-flex gap-2">
+                            <span class="badge bg-success">Security</span>
+                            <span class="badge bg-info">Blockchain</span>
+                            <span class="badge bg-warning">Encryption</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center py-4 mt-5" style="border-top: 2px solid #00ff41;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="terminal-window mb-3">
+                        <p class="mb-2">
+                            <span style="color: #ff6b6b;">thien@mysterious:~$</span> 
+                            echo "Thank you for visiting my digital realm"
+                        </p>
+                        <p style="color: #00ccff;">
+                            > Connecting minds through code...<br>
+                            > Ready to collaborate on your next project
+                        </p>
+                    </div>
+                    <div class="d-flex justify-content-center gap-4 mb-3">
+                        <a href="#" class="text-decoration-none" style="color: #00ff41;">
+                            <i class="fab fa-github fa-2x"></i>
+                        </a>
+                        <a href="#" class="text-decoration-none" style="color: #00ff41;">
+                            <i class="fab fa-linkedin fa-2x"></i>
+                        </a>
+                        <a href="#" class="text-decoration-none" style="color: #00ff41;">
+                            <i class="fab fa-twitter fa-2x"></i>
+                        </a>
+                        <a href="/contact" class="text-decoration-none" style="color: #00ff41;">
+                            <i class="fas fa-envelope fa-2x"></i>
+                        </a>
+                    </div>
+                    <p class="mb-0 glow-text">&copy; 2025 ThienHoan.dev | All rights reserved in the digital matrix</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+    
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const matrixArray = matrix.split("");
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+        
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        
+        setInterval(draw, 35);
+        
+        // Typing Effect
+        const texts = ['whoami', 'cat profile.txt', 'ls -la skills/', './run_projects.sh', 'echo "Ready to code!"'];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typingElement = document.getElementById('typing-text');
+        
+        function typeText() {
+            if (charIndex < texts[textIndex].length) {
+                typingElement.textContent = texts[textIndex].substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeText, 100);
+            } else {
+                setTimeout(() => {
+                    charIndex = 0;
+                    textIndex = (textIndex + 1) % texts.length;
+                    typeText();
+                }, 2000);
+            }
+        }
+        
+        typeText();
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

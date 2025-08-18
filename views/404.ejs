@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - Access Denied</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="d-flex flex-column">
+    <!-- Matrix Background -->
+    <canvas class="matrix-bg" id="matrix"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand glow-green" href="/">&lt;/&gt; ThienHoan.dev</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#about">// About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#skills">// Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#projects">// Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">// Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow-1 d-flex align-items-center" style="margin-top: 80px;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <!-- Terminal Header -->
+                    <div class="terminal-window mb-4 scan-line">
+                        <div class="text-start mb-3">
+                            <span style="color: #ff6b6b;">thien@mysterious:~$</span> 
+                            <span class="typing-effect" id="typing-text">ls -la /forbidden/</span>
+                        </div>
+                        <p style="color: #ff4444;">
+                            > Permission denied<br>
+                            > Access to this resource is restricted<br>
+                            > Unauthorized access attempt logged
+                        </p>
+                    </div>
+
+                    <!-- Error Display -->
+                    <div class="error-code glow-text mb-4">404</div>
+                    
+                    <h1 class="h2 mb-4 access-denied">
+                        <i class="fas fa-exclamation-triangle"></i> ACCESS DENIED
+                    </h1>
+                    
+                    <div class="terminal-window mb-4">
+                        <div class="text-start">
+                            <p style="color: #ff4444;">
+                                <strong>ERROR:</strong> The requested resource could not be found<br>
+                                <strong>PATH:</strong> <span style="color: #00ccff;">${window.location.pathname}</span><br>
+                                <strong>STATUS:</strong> <span style="color: #ff4444;">RESOURCE_NOT_FOUND</span><br>
+                                <strong>TIME:</strong> <span id="current-time"></span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <p class="lead mb-4" style="color: rgba(255, 68, 68, 0.8);">
+                        The file or directory you are looking for has been moved, deleted, or never existed in this digital realm.
+                    </p>
+                    
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-center gap-3 mb-4">
+                        <a href="/" class="btn-cyber">
+                            <i class="fas fa-home"></i> Return to Base
+                        </a>
+                        <a href="/contact" class="btn-cyber">
+                            <i class="fas fa-bug"></i> Report Issue
+                        </a>
+                    </div>
+
+                    <!-- Additional Info -->
+                    <div class="terminal-window">
+                        <h5 style="color: #00ccff;">
+                            <i class="fas fa-info-circle"></i> System Information
+                        </h5>
+                        <div class="row text-start">
+                            <div class="col-md-6">
+                                <p><strong>Server:</strong> Quantum Security</p>
+                                <p><strong>Protocol:</strong> HTTPS/TLS 1.3</p>
+                                <p><strong>Status:</strong> <span class="glow-green">OPERATIONAL</span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Error Code:</strong> 404_NOT_FOUND</p>
+                                <p><strong>Timestamp:</strong> <span id="timestamp"></span></p>
+                                <p><strong>User Agent:</strong> Detected</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-3 mt-auto" style="background: rgba(0, 0, 0, 0.9); border-top: 2px solid #ff4444;">
+        <div class="container">
+            <div class="terminal-window">
+                <p class="mb-2">
+                    <span style="color: #ff6b6b;">thien@mysterious:~$</span> 
+                    echo "End of error report"
+                </p>
+                <p style="color: #00ccff;" class="mb-0">
+                    > Error logged to system<br>
+                    > Returning to secure state...
+                </p>
+            </div>
+            <p class="mb-0 glow-text">&copy; 2025 ThienHoan.dev | Error in the digital matrix</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Use red matrix for error page
+        const matrix = "ERROR404ACCESSDENIEDPERMISSIONDENIED123456789@#$%^&*";
+        const matrixArray = matrix.split("");
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+        
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#ff4444';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        
+        setInterval(draw, 35);
+        
+        // Typing Effect
+        const texts = ['ls -la /forbidden/', 'cat /etc/passwd', 'sudo access_denied', 'grep "404" error.log', 'echo "Path not found"'];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typingElement = document.getElementById('typing-text');
+        
+        function typeText() {
+            if (charIndex < texts[textIndex].length) {
+                typingElement.textContent = texts[textIndex].substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeText, 100);
+            } else {
+                setTimeout(() => {
+                    charIndex = 0;
+                    textIndex = (textIndex + 1) % texts.length;
+                    typeText();
+                }, 2000);
+            }
+        }
+        
+        typeText();
+        
+        // Update timestamps
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleString();
+            const timestamp = Math.floor(now.getTime() / 1000);
+            
+            const currentTimeEl = document.getElementById('current-time');
+            const timestampEl = document.getElementById('timestamp');
+            
+            if (currentTimeEl) currentTimeEl.textContent = timeString;
+            if (timestampEl) timestampEl.textContent = timestamp;
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+        
+        // Add glitch effect on mouse move
+        document.addEventListener('mousemove', function(e) {
+            const errorCode = document.querySelector('.error-code');
+            if (Math.random() > 0.95) {
+                errorCode.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+                setTimeout(() => {
+                    errorCode.style.transform = 'translate(0)';
+                }, 50);
+            }
+        });
+    </script>
+</body>
+</html>
