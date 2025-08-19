@@ -37,6 +37,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const redis_1 = __importDefault(require("./redis"));
 const path_1 = __importDefault(require("path"));
 const db_1 = __importDefault(require("./db/db"));
 const dotenv = __importStar(require("dotenv"));
@@ -44,7 +45,7 @@ const dotenv = __importStar(require("dotenv"));
 dotenv.config();
 const app = (0, express_1.default)();
 app.enable('trust proxy');
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 // Middleware
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
@@ -60,6 +61,53 @@ app.get('/contact', (req, res) => {
     res.render('contact', { title: 'Liên Hệ', message: null });
 });
 // API Routes
+app.get('/api/contact', async (req, res) => {
+    const cacheKey = "contacts";
+    try {
+        // 1. Kiểm tra cache (với error handling)
+        let cachedData = null;
+        try {
+            cachedData = await redis_1.default.get(cacheKey);
+        }
+        catch (redisError) {
+            console.warn("Redis get error:", redisError instanceof Error ? redisError.message : String(redisError));
+        }
+        if (cachedData) {
+            console.log("Trả từ Redis cache");
+            return res.json({
+                success: true,
+                contacts: JSON.parse(cachedData),
+                cached: true,
+            });
+        }
+        // 2. Nếu không có trong cache thì truy vấn database
+        const client = await db_1.default.connect();
+        const result = await client.query('SELECT id, email, content, created_at FROM contacts ORDER BY created_at DESC');
+        client.release();
+        const contacts = result.rows;
+        // 3. Lưu vào cache (timeout 60 giây) với error handling
+        try {
+            await redis_1.default.set(cacheKey, JSON.stringify(contacts), 'EX', 60);
+            console.log("Cache saved successfully");
+        }
+        catch (redisError) {
+            console.warn("Failed to save Redis cache:", redisError instanceof Error ? redisError.message : String(redisError));
+        }
+        res.json({
+            success: true,
+            contacts,
+            cached: false,
+        });
+    }
+    catch (error) {
+        console.error("Lỗi khi xử lý /api/contact:", error);
+        res.status(500).json({
+            success: false,
+            message: "Lỗi khi lấy dữ liệu từ DB hoặc Redis",
+        });
+    }
+});
+// POST route để gửi contact form
 app.post('/api/contact', async (req, res) => {
     const { email, content } = req.body;
     if (!email || !content) {
@@ -78,6 +126,15 @@ app.post('/api/contact', async (req, res) => {
     `;
         const result = await client.query(insertQuery, [email, content]);
         const newContact = result.rows[0];
+        // Thử xóa cache sau khi thêm contact mới (không throw error nếu Redis fail)
+        try {
+            await redis_1.default.del("contacts");
+            console.log("Cache cleared successfully");
+        }
+        catch (redisError) {
+            console.warn("Failed to clear Redis cache:", redisError instanceof Error ? redisError.message : String(redisError));
+            // Không throw error, vì database operation đã thành công
+        }
         res.json({
             success: true,
             message: 'Gửi liên hệ thành công!',
@@ -89,27 +146,6 @@ app.post('/api/contact', async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Lỗi khi lưu dữ liệu vào database'
-        });
-    }
-    finally {
-        client.release();
-    }
-});
-// Get all contacts (optional - for admin)
-app.get('/api/contacts', async (req, res) => {
-    const client = await db_1.default.connect();
-    try {
-        const result = await client.query('SELECT * FROM contacts ORDER BY created_at DESC');
-        res.json({
-            success: true,
-            contacts: result.rows
-        });
-    }
-    catch (error) {
-        console.error('Error fetching contacts:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Lỗi khi lấy dữ liệu từ database'
         });
     }
     finally {

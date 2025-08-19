@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  app:
+    image: thienhoannhaa/dpl_cv:latest
+    container_name: node-app
+    restart: always
+    env_file:
+      - .env       # Đảm bảo Docker load được biến môi trường từ file .env
+    environment:
+      NODE_ENV: production
+      VIRTUAL_HOST: cv.thienhoannha.me
+      VIRTUAL_PORT: 3001
+    expose:
+      - "3001"
+    networks:
+      - app-network
+
+  nginx:
+    image: jwilder/nginx-proxy:latest
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - "80:80"    # HTTP
+      - "443:443"  # HTTPS nếu cần
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - app-network
+    depends_on:
+      - app
+
+networks:
+  app-network:
+    driver: bridge
