@@ -1,5 +1,21 @@
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Theme toggle
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('theme-light');
+        if (themeToggleBtn) themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('theme-light');
+            const isLight = document.body.classList.contains('theme-light');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            themeToggleBtn.innerHTML = isLight ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        });
+    }
+
     // Contact form functionality
     const contactForm = document.getElementById('contactForm');
     const messageDiv = document.getElementById('message');
@@ -37,6 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
             card.classList.add('fade-in');
         }, index * 100);
     });
+
+    // Download CV button -> trigger print to PDF
+    const downloadCvBtn = document.getElementById('downloadCvBtn');
+    if (downloadCvBtn) {
+        downloadCvBtn.addEventListener('click', () => {
+            window.print();
+        });
+    }
 });
 
 // Handle contact form submission with Bootstrap styling

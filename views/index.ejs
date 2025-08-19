@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %> - Mysterious Developer CV</title>
+    <meta name="description" content="CV lập trình viên Full-Stack - ThienHoan.dev: dự án, kỹ năng, liên hệ.">
+    <meta name="keywords" content="CV, Full-Stack, Developer, JavaScript, Node.js, React">
+    <meta name="theme-color" content="#00ff41">
+    <meta property="og:title" content="ThienHoan.dev - Mysterious Developer CV">
+    <meta property="og:description" content="Xem dự án, kỹ năng, và liên hệ hợp tác.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:url" content="/">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Thiện Hoàn",
+      "jobTitle": "Full-Stack Developer",
+      "url": "/",
+      "sameAs": []
+    }
+    </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
@@ -33,6 +52,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">// Contact</a>
                     </li>
+                    <li class="nav-item d-flex align-items-center ms-2">
+                        <button id="themeToggle" class="btn btn-sm btn-cyber" data-bs-toggle="tooltip" title="Đổi giao diện">
+                            <i class="fas fa-sun"></i>
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -61,6 +85,9 @@
                             <a href="/contact" class="btn btn-cyber">
                                 <i class="fas fa-terminal"></i> Initialize Contact
                             </a>
+                            <button id="downloadCvBtn" class="btn btn-cyber no-print" data-bs-toggle="tooltip" title="Tải CV dạng PDF">
+                                <i class="fas fa-file-download"></i> Download CV
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -188,7 +215,7 @@
         </h2>
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="project-card card h-100">
+                <div class="project-card card h-100" role="button" data-bs-toggle="modal" data-bs-target="#project1Modal">
                     <div class="card-body">
                         <h5 class="card-title" style="color: #00ff41;">
                             <i class="fas fa-globe"></i> Mysterious Web Portal
@@ -198,15 +225,15 @@
                             tích hợp AI và các thuật toán mã hóa tiên tiến.
                         </p>
                         <div class="d-flex gap-2">
-                            <span class="badge bg-success">React</span>
-                            <span class="badge bg-info">Node.js</span>
-                            <span class="badge bg-warning">AI</span>
+                            <span class="badge bg-success" data-bs-toggle="tooltip" title="Front-end UI">React</span>
+                            <span class="badge bg-info" data-bs-toggle="tooltip" title="Back-end server">Node.js</span>
+                            <span class="badge bg-warning" data-bs-toggle="tooltip" title="Machine Intelligence">AI</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="project-card card h-100">
+                <div class="project-card card h-100" role="button" data-bs-toggle="modal" data-bs-target="#project2Modal">
                     <div class="card-body">
                         <h5 class="card-title" style="color: #00ff41;">
                             <i class="fas fa-robot"></i> Quantum Bot
@@ -216,15 +243,15 @@
                             và xử lý dữ liệu phức tạp trong thời gian thực.
                         </p>
                         <div class="d-flex gap-2">
-                            <span class="badge bg-success">Python</span>
-                            <span class="badge bg-info">ML</span>
-                            <span class="badge bg-warning">API</span>
+                            <span class="badge bg-success" data-bs-toggle="tooltip" title="Ngôn ngữ chính">Python</span>
+                            <span class="badge bg-info" data-bs-toggle="tooltip" title="Học máy">ML</span>
+                            <span class="badge bg-warning" data-bs-toggle="tooltip" title="Tích hợp dịch vụ">API</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="project-card card h-100">
+                <div class="project-card card h-100" role="button" data-bs-toggle="modal" data-bs-target="#project3Modal">
                     <div class="card-body">
                         <h5 class="card-title" style="color: #00ff41;">
                             <i class="fas fa-shield-alt"></i> CyberGuard System
@@ -234,15 +261,85 @@
                             các mối đe dọa mạng một cách tự động.
                         </p>
                         <div class="d-flex gap-2">
-                            <span class="badge bg-success">Security</span>
-                            <span class="badge bg-info">Blockchain</span>
-                            <span class="badge bg-warning">Encryption</span>
+                            <span class="badge bg-success" data-bs-toggle="tooltip" title="An ninh hệ thống">Security</span>
+                            <span class="badge bg-info" data-bs-toggle="tooltip" title="Ledger phân tán">Blockchain</span>
+                            <span class="badge bg-warning" data-bs-toggle="tooltip" title="Mã hoá">Encryption</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Project Detail Modals -->
+    <div class="modal fade" id="project1Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-globe me-2"></i>Mysterious Web Portal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Ứng dụng web full-stack tích hợp AI, real-time, và bảo mật nâng cao.</p>
+                    <ul>
+                        <li>Frontend: React, Zustand, Tailwind</li>
+                        <li>Backend: Node.js, Express, PostgreSQL</li>
+                        <li>Infra: Docker, CI/CD</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-cyber" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live</a>
+                    <a href="#" class="btn btn-cyber" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Repo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="project2Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-robot me-2"></i>Quantum Bot</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Bot tự động hoá phân tích dữ liệu lớn theo thời gian thực.</p>
+                    <ul>
+                        <li>Python, FastAPI</li>
+                        <li>Model: Scikit-learn, XGBoost</li>
+                        <li>Queue: Redis</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-cyber" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live</a>
+                    <a href="#" class="btn btn-cyber" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Repo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="project3Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-shield-alt me-2"></i>CyberGuard System</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Giải pháp bảo mật chủ động với phát hiện xâm nhập và phản ứng tự động.</p>
+                    <ul>
+                        <li>Go services, gRPC</li>
+                        <li>Blockchain audit trail</li>
+                        <li>Encryption: libsodium</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-cyber" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live</a>
+                    <a href="#" class="btn btn-cyber" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Repo</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-dark text-center py-4 mt-5" style="border-top: 2px solid #00ff41;">
@@ -260,14 +357,14 @@
                         </p>
                     </div>
                     <div class="d-flex justify-content-center gap-4 mb-3">
-                        <a href="#" class="text-decoration-none" style="color: #00ff41;">
+                        <a href="https://github.com/ThienHoan" class="text-decoration-none" style="color: #00ff41;">
                             <i class="fab fa-github fa-2x"></i>
                         </a>
-                        <a href="#" class="text-decoration-none" style="color: #00ff41;">
-                            <i class="fab fa-linkedin fa-2x"></i>
+                        <a href="https://www.facebook.com/hoann.thiens/" class="text-decoration-none" style="color: #00ff41;">
+                            <i class="fab fa-facebook fa-2x"></i>
                         </a>
-                        <a href="#" class="text-decoration-none" style="color: #00ff41;">
-                            <i class="fab fa-twitter fa-2x"></i>
+                        <a href="https://www.linkedin.com/in/thi%E1%BB%87n-ho%C3%A0n-54baa4372/" class="text-decoration-none" style="color: #00ff41;">
+                            <i class="fab fa-linkedin fa-2x"></i>
                         </a>
                         <a href="/contact" class="text-decoration-none" style="color: #00ff41;">
                             <i class="fas fa-envelope fa-2x"></i>
